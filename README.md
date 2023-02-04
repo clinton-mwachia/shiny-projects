@@ -4,10 +4,10 @@ Shiny Use cases Templates
 
     **Case Study**: How does weather influence Flight delays?.
 
-    ![](assets/flights.png)
+    <img src="assets/flights.png" width="70%"/>
 
 2. Cars
 
     **Case Study**: How to choose the most fuel consumption car?
 
-    ![](assets/cars.png)
+    <img src="assets/cars.png" width="70%"/>
