@@ -1,0 +1,17 @@
+.shiny-output-error-validation {
+  color: red;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shiny-image-output {
+  border: 2px solid black;
+}
+
+.shiny-html-output {
+  border: 2px solid green;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
