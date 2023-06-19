@@ -11,3 +11,9 @@ Shiny Use cases Templates
     **Case Study**: How to choose the most fuel consumption car?
 
     <img src="assets/cars.png" width="70%"/>
+    
+3. Finance
+
+    **Case Study**: Analyse finance data?
+
+    <img src="assets/Finance.png" width="70%"/>
