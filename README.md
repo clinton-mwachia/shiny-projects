@@ -14,11 +14,6 @@ Shiny Projects
     
 3. finance
 
-To replicate this project:-
-
-    i. Run the `Data/Data.R` file to generate the data.
-    ii.Run the App.R file
-
-    **Case Study**: Manage finances of an organisation
+    **Case Study**: Manage finances of an financial organisation
 
     <img src="assets/finance.png" width="70%"/>
