@@ -37,7 +37,7 @@ members <- randomNames(n,return.complete.data = TRUE) %>%
   relocate(date_joined, .before = "name")
 
 # write the data
-write.csv(members, file = "Data/members.csv")
+write.csv(members, file = "F:/R/shiny-use-cases-templates/Financial Analysis/Data/members.csv")
 }
 
 # loans
@@ -62,7 +62,7 @@ loans = members %>%
   relocate(date, .before = "name")
 
 # write the data
-write.csv(loans, file = "Data/loans.csv")
+write.csv(loans, file = "F:/R/shiny-use-cases-templates/Financial Analysis/Data/loans.csv")
 }
 
 # savings
@@ -79,5 +79,5 @@ savings <- members %>%
     ) %>%
     relocate(date, .before = "name")
   
-write.csv(savings, "Data/savings.csv")
+write.csv(savings, "F:/R/shiny-use-cases-templates/Financial Analysis/Data/savings.csv")
 }
