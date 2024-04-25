@@ -3,6 +3,7 @@ setwd("F:/R/shiny-projects/Titanic")
 
 # loading libraries
 library(tidyverse)
+library(viridis)
 
 # load the data
 raw_titanic = read_csv("data/titanic.csv")
@@ -41,3 +42,21 @@ titanic = titanic_clean |>
                ifelse(Embarked == 1, "Queenstown","Southampton"))),
     survived = as.factor(ifelse(survived == 0, "no","yes"))
   )
+
+# exploratory data analysis
+# 1.0 percentage of survivors
+titanic |> 
+  group_by(survived) |>
+  summarise(
+    total = n()
+  ) |>
+  ggplot(aes(fill=survived, x=survived, y=total)) + 
+  geom_bar(position="stack", stat="identity") +
+  geom_text(aes(label=total), 
+            position=position_dodge(width=0.9), vjust=-0.25) +
+  scale_fill_viridis(discrete = T) +
+  xlab("Survived") + ylab("Total") +
+  labs(caption = "Data Source: Kaggle", 
+       title = "Passenger Survival Rates",
+       subtitle = "Titanic voyage: 1912") +
+  theme_bw()
