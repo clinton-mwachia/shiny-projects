@@ -162,3 +162,21 @@ titanic |>
        title = "Passenger Survival Rates by Sex",
        subtitle = "Titanic voyage: 1912") +
   theme_bw()
+
+# survival rates by class
+titanic |> 
+  group_by(survived, Pclass) |>
+  summarise(
+    total = n()
+  ) |>
+  ggplot(aes(fill=Pclass, x=survived, y=total)) + 
+  geom_bar(position="dodge", stat="identity") +
+  geom_text(aes(label=total), 
+            position=position_dodge(width=0.9), vjust=-0.25) +
+  scale_fill_viridis(discrete = T) +
+  xlab("Survived") + ylab("Total") +
+  labs(caption = "Data Source: Kaggle", 
+       title = "Passenger Survival Rates by class",
+       subtitle = "Titanic voyage: 1912") +
+  facet_wrap(~Pclass) +
+  theme_bw()
