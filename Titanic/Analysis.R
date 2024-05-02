@@ -43,7 +43,8 @@ titanic = titanic_clean |>
     survived = as.factor(ifelse(survived == 0, "no","yes"))
   )
 
-# exploratory data analysis
+################## exploratory data analysis ####################################
+
 # the number survivors
 # there were 340 survivors and 967 passenger perished
 titanic |> 
@@ -115,3 +116,33 @@ titanic |>
        title = "Passengers by Pclass",
        subtitle = "Titanic voyage: 1912") +
   theme_bw()
+
+# number of passengers by age-groups
+# 0-16 => child
+# 17-30 => young adults
+# 31-45 => middle aged adult
+# > 45 => old aged adult
+titanic |>
+  mutate(
+    age_group = ifelse(Age > 0 & Age <= 16, "child[0-16]", 
+                       ifelse(Age > 17 & Age < 30, "young adult[17-30]",
+                              ifelse(Age > 31 & Age < 45, 
+                                     "middle aged adult[31-45]","old aged adult[>45]")))
+  ) |> 
+  group_by(age_group) |>
+  summarise(
+    total = n()
+  ) |>
+  ggplot(aes(fill=age_group, x=age_group, y=total)) + 
+  geom_bar(position="stack", stat="identity") +
+  geom_text(aes(label=total), 
+            position=position_dodge(width=0.9), vjust=-0.25) +
+  scale_fill_viridis(discrete = T) +
+  xlab("Age Group") + ylab("Total") +
+  labs(caption = "Data Source: Kaggle", 
+       title = "Passengers by age group",
+       subtitle = "Titanic voyage: 1912") +
+  scale_x_discrete(labels=c("child","middle aged adult",
+                            "old aged adult","young adult")) + # rename x values
+  theme_bw()
+  
