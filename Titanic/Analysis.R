@@ -44,7 +44,8 @@ titanic = titanic_clean |>
   )
 
 # exploratory data analysis
-# 1.0 percentage of survivors
+# the number survivors
+# there were 340 survivors and 967 passenger perished
 titanic |> 
   group_by(survived) |>
   summarise(
@@ -58,5 +59,59 @@ titanic |>
   xlab("Survived") + ylab("Total") +
   labs(caption = "Data Source: Kaggle", 
        title = "Passenger Survival Rates",
+       subtitle = "Titanic voyage: 1912") +
+  theme_bw()
+
+# number of passengers by gender
+# male: 843, female: 464
+titanic |> 
+  group_by(Sex) |>
+  summarise(
+    total = n()
+  ) |>
+  ggplot(aes(fill=Sex, x=Sex, y=total)) + 
+  geom_bar(position="stack", stat="identity") +
+  geom_text(aes(label=total), 
+            position=position_dodge(width=0.9), vjust=-0.25) +
+  scale_fill_viridis(discrete = T) +
+  xlab("Sex") + ylab("Total") +
+  labs(caption = "Data Source: Kaggle", 
+       title = "Passengers by Sex",
+       subtitle = "Titanic voyage: 1912") +
+  theme_bw()
+
+# number of passengers from there point of embarked
+# Cherboug: 270, Queenstown: 123, Southampton: 914
+titanic |> 
+  group_by(Embarked) |>
+  summarise(
+    total = n()
+  ) |>
+  ggplot(aes(fill=Embarked, x=Embarked, y=total)) + 
+  geom_bar(position="stack", stat="identity") +
+  geom_text(aes(label=total), 
+            position=position_dodge(width=0.9), vjust=-0.25) +
+  scale_fill_viridis(discrete = T) +
+  xlab("Embarked") + ylab("Total") +
+  labs(caption = "Data Source: Kaggle", 
+       title = "Passengers by point of Embarked",
+       subtitle = "Titanic voyage: 1912") +
+  theme_bw()
+
+# number of passengers by class
+# lower: 709, middle: 277, upper: 321
+titanic |> 
+  group_by(Pclass) |>
+  summarise(
+    total = n()
+  ) |>
+  ggplot(aes(fill=Pclass, x=Pclass, y=total)) + 
+  geom_bar(position="stack", stat="identity") +
+  geom_text(aes(label=total), 
+            position=position_dodge(width=0.9), vjust=-0.25) +
+  scale_fill_viridis(discrete = T) +
+  xlab("Pclass") + ylab("Total") +
+  labs(caption = "Data Source: Kaggle", 
+       title = "Passengers by Pclass",
        subtitle = "Titanic voyage: 1912") +
   theme_bw()
